@@ -37,7 +37,7 @@ SRC_URI = " \
     git://github.com/RPi-Distro/firmware-nonfree \
     file://0001-brcmfmac43455-sdio.txt-Follow-raspbian-change-for-bo.patch \
     "
-SRCREV = "b518de45ced519e8f7a499f4778100173402ae43"
+SRCREV = "f0ad1a42b051aa9da1d9e1dc606dd68ec2f163a5"
 PV = "0.0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
