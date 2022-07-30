@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: Andrei Gherzan <andrei.gherzan@huawei.com>
+#
+# SPDX-License-Identifier: MIT
+
+---  # document start
+
+name: Builds
+
+on:
+  pull_request:
+    paths-ignore:
+      # These need to be kept in sync with the non-bypass workflow.
+      - '.github/actions/**'
+      - '.github/workflows/docker-images/yocto-builder/**'
+      - '.github/workflows/docker-images/*.sh'
+      - '.github/workflows/yocto-builds.yml'
+      - 'classes'
+      - 'conf'
+      - 'dynamic-layers'
+      - 'files'
+      - 'lib'
+      - 'recipes-**'
+      - 'wic'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        machine:
+          # These need to be kept in sync with the non-bypass workflow.
+          - raspberrypi
+          - raspberrypi0-2w-64
+          - raspberrypi0-2w
+          - raspberrypi0
+          - raspberrypi0-wifi
+          - raspberrypi2
+          - raspberrypi3-64
+          - raspberrypi3
+          - raspberrypi4-64
+          - raspberrypi4
+          - raspberrypi-cm3
+          - raspberrypi-cm
+        image: [rpi-test-image]
+        distro: [poky]
+    runs-on: ubuntu-latest
+    name: ${{ matrix.machine }}/${{ matrix.image }}/poky/systemd
+    steps:
+      - run: 'echo "The PR is not influencing Yocto builds."'

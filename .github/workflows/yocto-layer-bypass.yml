@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Andrei Gherzan <andrei.gherzan@huawei.com>
+#
+# SPDX-License-Identifier: MIT
+
+---  # document start
+
+name: Yocto Compatible
+
+on:
+  pull_request:
+    paths-ignore:
+      # These need to be kept in sync with the non-bypass workflow.
+      - '.github/actions/**'
+      - '.github/workflows/docker-images/yocto-builder/**'
+      - '.github/workflows/docker-images/*.sh'
+      - '.github/workflows/yocto-layer.yml'
+      - 'classes'
+      - 'conf'
+      - 'dynamic-layers'
+      - 'files'
+      - 'lib'
+      - 'recipes-**'
+      - 'wic'
+
+jobs:
+  yocto-check-layer:
+    name: Validate with yocto-check-layer
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "The PR is not influencing Yocto Compatible builds."'
